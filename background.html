@@ -1,0 +1,10 @@
+<script>
+var link;
+    chrome.browserAction.onClicked.addListener(function(tab1){
+        chrome.tabs.getSelected(null,function(tab2){
+	link=tab2.url;});
+	alert(link);
+});
+
+</script>
+
