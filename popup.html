@@ -6,7 +6,7 @@ link=tab2.url;});
 var re = new RegExp('^(?:f|ht)tp(?:s)?\://([^/]+)', 'im');
 alert("Redirect to the target page.");
 var host = link.match(re)[1].toString();
-var nhost = "proxy.lib.ohio-state.edu/login?url="+host;
+var nhost = host+".proxy.lib.ohio-state.edu";
 var nlink = link.replace(host,nhost);
 chrome.tabs.create({url: nlink});
 </script>
