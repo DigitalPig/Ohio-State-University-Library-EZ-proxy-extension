@@ -1,14 +1,46 @@
 <script>
-var link;
-chrome.tabs.getSelected(null,function(tab2){
-link=tab2.url;});
+  <!-- Copied from NUS EZ proxy extension -->
+<!--function reload_tab_with_lib_proxy() { -->
+    var libproxy = ".proxy.lib.ohio-state.edu";
 
-var re = new RegExp('^(?:f|ht)tp(?:s)?\://([^/]+)', 'im');
-alert("Redirect to the target page.");
-var host = link.match(re)[1].toString();
-var nhost = host+".proxy.lib.ohio-state.edu";
-var nlink = link.replace(host,nhost);
-chrome.tabs.create({url: nlink});
+    chrome.tabs.getSelected(undefined, function(tab) {
+	var this_tab_url = tab.url;
+        var pos = 0;
+
+	if(this_tab_url.indexOf("http") != 0) {
+	    return;
+	} else {
+	    pos = this_tab_url.indexOf("/", 9);
+	}
+
+	var new_url = "http://www.google.com";
+
+	if(pos < 0) {
+	    new_url  = this_tab_url + libproxy;
+	} else {
+	    new_url  = this_tab_url.substring(0, pos);
+	    new_url += libproxy;
+	    new_url += this_tab_url.substring(pos, this_tab_url.length);
+        }
+
+        chrome.tabs.update(tab.id, {url: new_url});
+    });
+
+    window.close();
+
+
+
+
+<!-- var link; -->
+<!-- chrome.tabs.getSelected(null,function(tab2){ -->
+<!-- link=tab2.url;}); -->
+
+<!-- var re = new RegExp('^(?:f|ht)tp(?:s)?\://([^/]+)', 'im'); -->
+<!-- alert("Redirect to the target page."); -->
+<!-- var host = link.match(re)[1].toString(); -->
+<!-- var nhost = host+".proxy.lib.ohio-state.edu"; -->
+<!-- var nlink = link.replace(host,nhost); -->
+<!-- chrome.tabs.create({url: nlink}); -->
 </script>
 
 
