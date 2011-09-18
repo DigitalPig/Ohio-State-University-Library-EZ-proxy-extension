@@ -1,5 +1,6 @@
 <script>
   <!-- Copied from NUS EZ proxy extension -->
+  <!--  -->
 <!--function reload_tab_with_lib_proxy() { -->
     var libproxy = ".proxy.lib.ohio-state.edu";
 
@@ -26,21 +27,5 @@
         chrome.tabs.update(tab.id, {url: new_url});
     });
 
-    window.close();
 
-
-
-
-<!-- var link; -->
-<!-- chrome.tabs.getSelected(null,function(tab2){ -->
-<!-- link=tab2.url;}); -->
-
-<!-- var re = new RegExp('^(?:f|ht)tp(?:s)?\://([^/]+)', 'im'); -->
-<!-- alert("Redirect to the target page."); -->
-<!-- var host = link.match(re)[1].toString(); -->
-<!-- var nhost = host+".proxy.lib.ohio-state.edu"; -->
-<!-- var nlink = link.replace(host,nhost); -->
-<!-- chrome.tabs.create({url: nlink}); -->
 </script>
-
-

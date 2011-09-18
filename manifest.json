@@ -2,14 +2,15 @@
   "name": "Ohio State University Library Proxy Extension",
   "description": "Add OSU library proxy when browsing the journal off-campus",
   "icons":{
+	"16": "icon.png",
 	"128":"icon-128x128.png"},
   "browser_action": {
       "default_icon": "icon-16x16.png",
       "default_title": "OSU",
       "popup":"popup.html"
         },
-
   "permissions": [
-    "tabs", "http://*/*", "https://*/*" ],
-  "version":"0.2.0"
+    "tabs", "http://*/*", "https://*/*", "contextMenus" ],
+  "background_page": "background.html",
+  "version":"0.2.2"
 }

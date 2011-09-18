@@ -1,10 +1,36 @@
 <script>
-var link;
-    chrome.browserAction.onClicked.addListener(function(tab1){
-        chrome.tabs.getSelected(null,function(tab2){
-	link=tab2.url;});
-	alert(link);
-});
+
+function reload_tab_with_lib_proxy(info,tab){
+
+var proxy=".proxy.lib.ohio-state.edu";
+
+var orig_url=info.linkUrl;
+var pos =0;
+
+if (orig_url.indexOf("http") !=0) {
+return;} 
+else {
+pos = orig_url.indexOf("/",9);}
+
+var new_url = "http://www.google.com";
+
+if (pos < 0) {
+new_url = orig_url + proxy;} 
+else {
+new_url = orig_url.substring(0,pos);
+new_url += proxy;
+new_url += orig_url.substring(pos,orig_url.length);
+}
+
+chrome.tabs.create({url: new_url});
+}
+
+var item = "Use OSU EZ Proxy to Open This Link";
+chrome.contextMenus.create(
+{"title" : item, 
+"contexts" : ["link"], 
+"onclick": reload_tab_with_lib_proxy}
+);
 
 </script>
 
